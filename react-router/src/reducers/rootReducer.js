@@ -1,0 +1,30 @@
+import { createDispatchHook } from "react-redux";
+
+const initialState = {
+    cards : [
+        {id:"1", title:"Alex", body :"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+        {id:"2", title:"Willma", body :"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+        {id:"3", title:"John", body :"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}
+    ],
+    users: []
+}
+
+const rootReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case "DELETE_CARD":
+            let newCards = state.cards.filter(card => card.id !== action.id);
+            return {
+                ...state,
+                cards : newCards
+            }
+        case "FETCH_USER":
+            return {
+                ...state,
+                users : action.payload
+            }
+        default:
+            return state;
+    }
+}
+
+export default rootReducer;
